@@ -1,0 +1,31 @@
+.form-container {
+    text-align: center;
+  }
+  .scroll{
+    overflow: scroll;
+    height: 54vh;
+    margin-bottom: 16px;
+  }
+  .label{
+    font-size: 18px;
+    padding: 8px 0px;
+  }
+  .input {
+    background-color: rgb(240, 240, 240);
+    border: 1px solid rgb(210, 210, 210);
+    border-radius: 9px;
+    font-size: 0.9em !important;
+  }
+
+  .create-button{
+      margin-left: 6em;
+  }
+  
+  ion-card-title{
+    font-size: 20px;
+  }
+  
+  
+  ion-item {
+      margin-top: 1em;
+  }

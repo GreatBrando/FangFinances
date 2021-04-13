@@ -1,9 +1,38 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Two
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>
+        Visualization
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+    <ion-card>
+        <ion-card-content>
+          <div style="position: relative; width: 350px; height: 300px;">
+            <canvas baseChart 
+            [datasets]="chartData" 
+            [labels]="chartLabels" 
+            [options]="chartOptions" 
+            [colors]="chartColors"
+            [legend]="showLegend" 
+            [chartType]="chartType">
+            </canvas>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+          <ion-card-content>
+              <canvas baseChart 
+              [datasets]="pieData" 
+              [labels]="pieLabels" 
+              [options]="chartOptions2" 
+              [colors]="pieChartColors"
+              [legend]="showLegend2" 
+              [chartType]="chartType2">
+              </canvas>
+          </ion-card-content>
+        </ion-card>
+
+</ion-content>

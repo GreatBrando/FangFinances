@@ -1,0 +1,132 @@
+<ion-header>
+    <ion-toolbar color="primary">
+       <ion-buttons slot="start">
+          <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+      </ion-buttons>
+      <ion-title> New Finance </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+    <ion-content padding >
+        <div class="form-container">
+           <form>
+             <ion-item>
+                 <ion-label class="label"><strong class="align"> Finance Type </strong></ion-label>
+                 <ion-select type="text" placeholder="Finance Type" [(ngModel)]="financeType" name="financeType"> 
+                   <ion-select-option value="Income">Income</ion-select-option>
+                   <ion-select-option value="Expense">Expense</ion-select-option>
+                   <ion-select-option value="Subscription">Subscription</ion-select-option>
+                 </ion-select>
+             </ion-item>
+             <ion-item>
+                 <ion-label position="stacked" class="label"><strong class="align"> Finance Title </strong></ion-label>
+                 <ion-input placeholder=" Enter title of Finance" [(ngModel)]="financeTitle" name="financeTitle" type="text"></ion-input>
+             </ion-item>
+             <ion-item>
+                <ion-label position="stacked" class="label"><strong class="align"> Finance Amount </strong></ion-label>
+                <ion-input placeholder=" Enter Finance Amount" [(ngModel)]="financeAmount" name="financeAmount" type="number"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="label"><strong class="align"> Finance Category </strong></ion-label>
+                <ion-select type="text" placeholder="Finance Category" [(ngModel)]="financeCategory" name="financeCategory"> 
+                  <ion-select-option value="Personal">Personal</ion-select-option>
+                  <ion-select-option value="Academic">Academic</ion-select-option>
+                  <ion-select-option value="Meals">Meals</ion-select-option>
+                  <ion-select-option value="Rent">Rent</ion-select-option>
+                </ion-select>
+            </ion-item>
+             <ion-item>
+                 <ion-label class="label"><strong class="align"> Finance Date </strong></ion-label>
+                 <ion-datetime  max="2030" placeholder="Select Finance Date" [(ngModel)]="financeDate" name="financeDate" type="text"></ion-datetime>
+             </ion-item>
+           </form>
+        </div>
+         <ion-grid fixed>
+           <ion-row>
+             <ion-col text-center>
+               <ion-button class="create-button" (click)="CreateRecord()">
+                 <ion-icon size="small" slot="icon-only" name="add"></ion-icon>
+                 &nbsp;Create New Finance
+               </ion-button>
+             </ion-col>
+           </ion-row>
+         </ion-grid>
+
+         <ion-card *ngFor="let item of Finances">
+            <span *ngIf="!item.isEdit; else elseBlock">
+              <ion-card-header>
+                <ion-card-title>{{item.financeTitle}}</ion-card-title>
+                <ion-card-subtitle>{{item.financeType}}</ion-card-subtitle>
+                <ion-card-subtitle>Finance Date: {{item.financeDate | date}} </ion-card-subtitle>
+                <ion-card-subtitle>Finance Amount: {{item.financeAmount}} </ion-card-subtitle>
+                <ion-card-subtitle>Category: {{item.financeCategory}} </ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+         
+                <ion-button shape="round" color="secondary" size="small" (click)="EditRecord(item)">
+                  <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+                </ion-button>
+        
+                <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
+                  <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+                </ion-button>
+        
+              </ion-card-content>
+            </span>
+            <ng-template #elseBlock>
+              <ion-card-header>
+                <ion-card-title>
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col>
+                        Edit
+                      </ion-col>
+                      <ion-col>
+                        <ion-button fill="clear" color="medium" size="small" (click)="item.isEdit = false">
+                          Cancel
+                        </ion-button>
+                      </ion-col>
+                      <ion-col>
+                        <ion-button fill="outline" color="success" size="small" (click)="UpdateRecord(item)">
+                          Update
+                        </ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-item>
+                  <ion-label><strong>Finance Type</strong></ion-label>
+                  <ion-select type="text" [(ngModel)]="item.EditfinanceType"> 
+                      <ion-select-option value="Income">Income</ion-select-option>
+                      <ion-select-option value="Expense">Expense</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <ion-item>
+                  <ion-label><strong>Finance Title</strong></ion-label>
+                  <ion-input type="text" [(ngModel)]="item.EditfinanceTitle"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label><strong>Finance Date</strong></ion-label>
+                  <ion-datetime  max="2030" [(ngModel)]="item.EditfinanceDate"></ion-datetime>
+                </ion-item>
+                <ion-item>
+                  <ion-label><strong>Finance Amount</strong></ion-label>
+                  <ion-input type="number" [(ngModel)]="item.EditfinanceAmount"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label><strong>Finance Category</strong></ion-label>
+                  <ion-select type="text" [(ngModel)]="item.EditfinanceCategory">
+                      <ion-select-option value="Personal">Personal</ion-select-option>
+                      <ion-select-option value="Academic">Academic</ion-select-option>
+                      <ion-select-option value="Meals">Meals</ion-select-option>
+                      <ion-select-option value="Rent">Rent</ion-select-option>
+                  </ion-select>        
+                </ion-item>
+              </ion-card-content>
+            </ng-template>
+          </ion-card>
+        
+</ion-content>

@@ -1,9 +1,99 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Three
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>
+        Account
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-icon tappable routerLink="/settings" name="settings" slot="start"></ion-icon>
+    </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content></ion-content>
+  <ion-content>
+  
+      <ion-card>
+        <ion-card-header>
+          <ion-avatar>
+            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=retro&f=y">
+          </ion-avatar>
+          <ion-card-title class="profile-title">{{ fullName }} </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list lines="none">
+              <ion-item lines="none">
+                 <ion-icon name="mail" ></ion-icon>
+                 <ion-label>{{ email }} </ion-label>
+              </ion-item>
+            </ion-list> 
+        </ion-card-content>
+      </ion-card>
+    
+      <ion-card class="welcome-card">
+          <ion-card-header>
+            <ion-card-subtitle>Fang Finances</ion-card-subtitle>
+            <ion-card-title>Income Breakdown</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+              <ion-row>
+                  <ion-col>
+                      <div>${{ IncomeTotal }}</div>
+                  </ion-col>
+                  <ion-col>
+                      <div>Total Income</div>
+                  </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col>
+                      <div>${{ IncomePersonalTotal }}</div>
+                  </ion-col>
+                  <ion-col>
+                      <div>Personal</div>
+                  </ion-col>
+              </ion-row>
+            <ion-row>
+              <ion-col>
+                  <div>${{ IncomeAcademicTotal }} </div>
+              </ion-col>
+              <ion-col>
+                  <div>Academic</div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="welcome-card">
+            <ion-card-header>
+              <ion-card-subtitle>Fang Finances</ion-card-subtitle>
+              <ion-card-title>Expense Breakdown</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-row>
+                    <ion-col>
+                        <div>${{ ExpenseTotal }}</div>
+                    </ion-col>
+                    <ion-col>
+                        <div>Total Expenses</div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <div>${{ ExpenseRentTotal }}</div>
+                    </ion-col>
+                    <ion-col>
+                        <div>Rent</div>
+                    </ion-col>
+                </ion-row>
+              <ion-row>
+                <ion-col>
+                    <div>${{ ExpenseMealsTotal }} </div>
+                </ion-col>
+                <ion-col>
+                    <div>Meals</div>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>      
+    
+    </ion-content>
+    
+  

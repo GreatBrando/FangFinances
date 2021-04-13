@@ -1,0 +1,50 @@
+<ion-content no-padding>
+  <div class="main">
+    <ion-card no-margin>
+      <ion-card-content>
+        <ion-row class="row">
+          <div class="Fang-logo">
+            <img src="/assets/FangFinancesLogo.png" class="img-logo">
+          </div>
+        </ion-row>
+  <form [formGroup]="loginForm">
+        <ion-row>
+          <ion-col>
+            <ion-input clearInput type="email" formControlName="email" placeholder="Email" [(ngModel)]="email" class="input" padding-horizontal
+              clear-input="true"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input clearInput type="password" formControlName="password"  placeholder="Password" [(ngModel)]="password" class="input"
+              padding-horizontal clear-input="true"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button expand="block" (click)="login()" color="undefined" class="transition">
+              <strong class="white">
+                Login</strong></ion-button>
+          </ion-col>
+        </ion-row>
+        </form>
+        <ion-row>
+          <ion-col>
+            <ion-text class="error" text-center>{{error}}</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-text text-center class="block">Don't have an account yet?
+              <span class="bold" routerLink="/register" routerDirection="forward"> Sign up here</span></ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-text class="block-bold" routerLink="/forgot-password">Forgot Password</ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

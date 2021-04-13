@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
 import { Tab2Page } from './tab2.page';
 
 @NgModule({
@@ -10,7 +11,13 @@ import { Tab2Page } from './tab2.page';
     IonicModule,
     CommonModule,
     FormsModule,
-    RouterModule.forChild([{ path: '', component: Tab2Page }])
+    ChartsModule,
+    RouterModule.forChild([
+      { 
+        path: '', 
+        component: Tab2Page 
+      }
+    ]),
   ],
   declarations: [Tab2Page]
 })
