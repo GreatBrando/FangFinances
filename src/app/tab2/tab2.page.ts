@@ -18,22 +18,40 @@ export class Tab2Page implements OnInit {
   pieData: ChartDataSets[] = [{ data: [] }]
   pieLabels: Label[] = ['Academic', 'Personal'];
 
+  chartData2: ChartDataSets[] = [{ data: [], label: 'Income Items' }]
+  chartLabels2: Label[];
+
+  pieData2: ChartDataSets[] = [{ data: [] }]
+  pieLabels2: Label[] = ['Meals', 'Rent'];
+
 
   item: any;
-  
-  item2: any;
-  IncomeAcademicTotal: any;
-  IncomePersonalTotal: any;
-  IncomeArray = [];
-  
+
   amount:any;
   amountArray = [];
 
   dates: any;
   datesArray = [];
+  
+  item2: any;
+  IncomeAcademicTotal: any;
+  IncomePersonalTotal: any;
+  IncomeArray = [];
+
+  item3: any;
+  amount2:any;
+  amountArray2 = [];
+
+  dates2: any;
+  datesArray2 = [];
+
+  item4: any;
+  ExpenseMealsTotal: any;
+  ExpenseRentTotal: any;
+  ExpenseArray = [];
 
 
-  //Bar
+  //IncomeBar
   chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -56,7 +74,7 @@ export class Tab2Page implements OnInit {
   showLegend = false;
   
 
-  //Pie
+  //IncomePie
   chartOptions2 = {
     responsive: true,
     title: {
@@ -77,6 +95,50 @@ export class Tab2Page implements OnInit {
   chartType2 = 'pie';
   showLegend2 = true;
   
+
+  //ExpenseBar
+  chartOptions3 = {
+    responsive: true,
+    maintainAspectRatio: false,
+    title: {
+      display: true,
+      text: 'Expense Items'
+    },
+    pan: {
+      enabled: true,
+      mode: 'xy'
+    },
+  };
+  chartColors3: Color[] = [
+    {
+      borderColor: '#000000',
+      backgroundColor: ["#e84351", "#434a54", "#3ebf9b", "#4d86dc", "#f3af37"]
+    }
+  ];
+  chartType3 = 'bar';
+  showLegend3 = false;
+
+
+  //ExpensePie
+  chartOptions4 = {
+    responsive: true,
+    title: {
+      display: true,
+      text: 'Expense Breakdown'
+    },
+    pan: {
+      enabled: true,
+      mode: 'xy'
+    },
+  };
+  chartColors4: Color[] = [
+    {
+      borderColor: '#000000',
+      backgroundColor: ["#e84351", "#434a54", "#3ebf9b", "#4d86dc", "#f3af37"]
+    }
+  ];
+  chartType4 = 'pie';
+  showLegend4 = true;
 
 
 
@@ -131,12 +193,62 @@ export class Tab2Page implements OnInit {
         };
         for (let i = 0; i < this.IncomeArray.length; i++) {
           this.pieData[0].data.push(this.IncomeArray[i])
-          this.pieChartColors[0].backgroundColor
         }
 
         console.log(this.pieData)
         console.log(this.pieLabels)
     });
+
+     
+    this.firestore.collection('users').doc(this.user.getUID()).collection('BalanceSheet', ref => ref.where('financeType', '==', 'Expense')).get().toPromise().then((snapshot) => {
+      snapshot.docs.forEach(doc => {
+        
+        this.item3 = doc.data();
+
+        this.amount2 = this.item3.financeAmount
+        this.amountArray2.push(this.amount2)
+
+        this.dates2 = this.item3.financeDate
+        this.datesArray2.push(this.dates2)
+
+        this.chartData2[0] = {
+          data: []
+        };
+        this.chartLabels2 = [];
+
+        for (let i = 0; i < this.amountArray2.length; i++) {
+            this.chartData2[0].data.push(this.amountArray2[i])
+        }
+        
+        for (let i = 0; i < this.datesArray2.length; i++) {
+            this.chartLabels2.push(this.datesArray2[i])
+        }
+      });
+      console.log(this.chartData2)
+      console.log(this.chartLabels2)
+    });
+
+    this.firestore.collection('users').doc(this.user.getUID()).get().toPromise().then((snapshot) => {
+
+      this.item4 = snapshot.data();
+
+      this.ExpenseMealsTotal = this.item4.ExpenseMealsTotal 
+      this.ExpenseArray.push(this.ExpenseMealsTotal)
+
+      this.ExpenseRentTotal = this.item4.ExpenseRentTotal
+      this.ExpenseArray.push(this.ExpenseRentTotal)
+
+      this.pieData2[0] = {
+        data: []
+      };
+      for (let i = 0; i < this.ExpenseArray.length; i++) {
+        this.pieData2[0].data.push(this.ExpenseArray[i])
+      }
+
+      console.log(this.pieData2)
+      console.log(this.pieLabels2)
+  });
+
     
   }
 

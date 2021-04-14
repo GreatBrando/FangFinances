@@ -42,6 +42,8 @@ export class Tab1Page implements OnInit {
       
       FinanceItems: any
 
+      RevenueTotal: number
+
       mainuser: AngularFirestoreDocument
       Income: string;
       SubscriptionTotal: number;
@@ -95,7 +97,6 @@ export class Tab1Page implements OnInit {
           let record = {};
           record['IncomeTotal'] = this.IncomeTotal;
           this.user.update_User(record);
-
         });
 
         this.itemService.read_FinanceIncomeAcademic().subscribe(data => {
@@ -165,6 +166,7 @@ export class Tab1Page implements OnInit {
             let record = {};
             record['ExpenseTotal'] = this.ExpenseTotal;
             this.user.update_User(record);
+            this.updateRevenue()
 
           });
 
@@ -231,7 +233,14 @@ export class Tab1Page implements OnInit {
             })
             console.log(this.FinanceItems);
           });
-  
+      }
+
+      updateRevenue(){
+        this.RevenueTotal = (this.IncomeTotal - this.ExpenseTotal - this.SubscriptionTotal)
+        console.log(this.RevenueTotal)
+        let record = {};
+        record['RevenueTotal'] = this.RevenueTotal;
+        this.user.update_User(record);
       }
 
       createPdf() {

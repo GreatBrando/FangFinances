@@ -35,4 +35,32 @@
           </ion-card-content>
         </ion-card>
 
+       <ion-card>
+        <ion-card-content>
+            <div style="position: relative; width: 350px; height: 300px;">
+              <canvas baseChart 
+              [datasets]="chartData2" 
+              [labels]="chartLabels2" 
+              [options]="chartOptions3" 
+              [colors]="chartColors3"
+              [legend]="showLegend3" 
+              [chartType]="chartType3">
+              </canvas>
+            </div>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+            <ion-card-content>
+                <canvas baseChart 
+                [datasets]="pieData2" 
+                [labels]="pieLabels2" 
+                [options]="chartOptions4" 
+                [colors]="chartColors4"
+                [legend]="showLegend4" 
+                [chartType]="chartType4">
+                </canvas>
+            </ion-card-content>
+        </ion-card>
+
 </ion-content>
